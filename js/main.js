@@ -3,7 +3,7 @@
 // Model ( stored Data)
 
 var markers = [];
-var imageResource;
+var imageResource, position;
 var places = [
   {title: "Murr's Volcano", location: {lat: -20.315, lng: 57.505}},
   {title: 'Port Louis', location: {lat: -20.166667, lng: 57.516667}},
@@ -17,8 +17,8 @@ var places = [
 
       function initMap(){
       var map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: -20.308922, lng: 57.572333},
-        zoom: 13
+        center: {lat: -20.318775, lng: 57.526294},
+        zoom: 14
       });
 
 
@@ -28,7 +28,7 @@ var places = [
 
       //
       for (var i = 0; i < places.length; i++){
-        var position = places[i].location;
+        position = places[i].location;
         var title = places[i].title;
 
         // create markers
@@ -89,3 +89,26 @@ var places = [
         }
         });
       }// end populate
+
+      //View Model
+
+      // using knockout to make a live search
+       function ViewModel(){
+        var self =this;
+        this.filter = ko.observable();
+
+        this.places = ko.observableArray(places);
+
+        this.visiblePlaces = ko.computed(function(){
+             return this.places().filter(function(place){
+                 if(!self.filter() || place.title.toLowerCase().indexOf(self.filter().toLowerCase()) !== -1)
+                   return place;
+
+             });
+         },this);
+
+
+         self.selectPlace = function(place) {
+             google.maps.event.trigger(place.marker, 'click');
+           };
+      }
