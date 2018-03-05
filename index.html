@@ -18,22 +18,14 @@
           </div>
 
           <div class="sidebar-header">
-              <h3>Top Places</h3>
+              <h3>Where to go?</h3>
           </div>
 
-          <ul class="list-unstyled components">
-              //search
-              <p>Dummy Heading</p>
-              <li class="active">
-                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
-                  <ul class="collapse list-unstyled" id="homeSubmenu">
-                      <li><a href="#">Home 1</a></li>
-                      <li><a href="#">Home 2</a></li>
-                      <li><a href="#">Home 3</a></li>
-                  </ul>
-              </li>
-
-
+          <p class= "search">Search: <input id="filter" type="text" data-bind="textInput: filter"/></p>
+          <ul class="list-unstyled"data-bind= "foreach: visiblePlaces">
+            <li>
+              <h5 class="markers_info"> <a href="#" data-bind="text: title, click: $parent.selectPlace"> </a></h5>
+            </li>
           </ul>
 
       </nav>
@@ -44,13 +36,14 @@
         <div class="container">
           <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
               <i class="glyphicon glyphicon-align-left"></i>
-              <span>Menu</span>
+              <span>menu</span>
           </button>
           <h2 class="page-header"> Mauritius: Places to Visit</h2>
       </row>
 
-          <div class= "col-md-12" id ='map'>
-          </div>
+         <div class="row">
+          <div class= "col-md-12" id ='map'></div>
+         </div>
         </div>
 
       </div>
