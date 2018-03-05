@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css" >
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+    <title> Map Project </title>
+  </head>
+
+  <body>
+    <div class="wrapper">
+    <div class="content">
+      <row>
+        <div class="container-fluid">
+          <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+              <i class="glyphicon glyphicon-align-left"></i>
+              <span>Menu</span>
+          </button>
+          <h2 class="page-header"> Mauritius: Places to Visit</h2>
+      </row>
+
+
+
+
+
+        <div class = "row">
+          <div class="col-md-3">
+            <!--sidbar implemented using https://bootstrapious.com/p/bootstrap-sidebar  -->
+            <nav id="sidebar">
+                <div id="dismiss">
+                    <i class="glyphicon glyphicon-arrow-left"></i>
+                </div>
+
+                <div class="sidebar-header">
+                    <h3>Top Places</h3>
+                </div>
+
+                <ul class="list-unstyled components">
+                    //search
+                    <p>Dummy Heading</p>
+                    <li class="active">
+                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+                        <ul class="collapse list-unstyled" id="homeSubmenu">
+                            <li><a href="#">Home 1</a></li>
+                            <li><a href="#">Home 2</a></li>
+                            <li><a href="#">Home 3</a></li>
+                        </ul>
+                    </li>
+
+
+                </ul>
+
+            </nav>
+
+          </div>
+          <div class="col-md-3">
+            <p> Instagram feed </p>
+
+          </div>
+
+          <div class= "col-md-6" id ='map'>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="js/main.js"></script>
+    <script type='text/javascript' src='libs/knockout-3.4.2.js'></script>
+    <!-- Bootstrap Js CDN -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA5JnnLpZGspPYloRpCXon2QJEzD71OA-Q&v=3&callback=initMap">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#dismiss, .overlay').on('click', function () {
+                $('#sidebar').removeClass('active');
+                $('.overlay').fadeOut();
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').addClass('active');
+                $('.overlay').fadeIn();
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+
+  </body>
+
+</html>
