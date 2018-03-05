@@ -11,9 +11,37 @@
 
   <body>
     <div class="wrapper">
+      <!--sidbar implemented using https://bootstrapious.com/p/bootstrap-sidebar  -->
+      <nav id="sidebar">
+          <div id="dismiss">
+              <i class="glyphicon glyphicon-arrow-left"></i>
+          </div>
+
+          <div class="sidebar-header">
+              <h3>Top Places</h3>
+          </div>
+
+          <ul class="list-unstyled components">
+              //search
+              <p>Dummy Heading</p>
+              <li class="active">
+                  <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
+                  <ul class="collapse list-unstyled" id="homeSubmenu">
+                      <li><a href="#">Home 1</a></li>
+                      <li><a href="#">Home 2</a></li>
+                      <li><a href="#">Home 3</a></li>
+                  </ul>
+              </li>
+
+
+          </ul>
+
+      </nav>
+
+
     <div class="content">
       <row>
-        <div class="container-fluid">
+        <div class="container">
           <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
               <i class="glyphicon glyphicon-align-left"></i>
               <span>Menu</span>
@@ -21,46 +49,7 @@
           <h2 class="page-header"> Mauritius: Places to Visit</h2>
       </row>
 
-
-
-
-
-        <div class = "row">
-          <div class="col-md-3">
-            <!--sidbar implemented using https://bootstrapious.com/p/bootstrap-sidebar  -->
-            <nav id="sidebar">
-                <div id="dismiss">
-                    <i class="glyphicon glyphicon-arrow-left"></i>
-                </div>
-
-                <div class="sidebar-header">
-                    <h3>Top Places</h3>
-                </div>
-
-                <ul class="list-unstyled components">
-                    //search
-                    <p>Dummy Heading</p>
-                    <li class="active">
-                        <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">Home</a>
-                        <ul class="collapse list-unstyled" id="homeSubmenu">
-                            <li><a href="#">Home 1</a></li>
-                            <li><a href="#">Home 2</a></li>
-                            <li><a href="#">Home 3</a></li>
-                        </ul>
-                    </li>
-
-
-                </ul>
-
-            </nav>
-
-          </div>
-          <div class="col-md-3">
-            <p> Instagram feed </p>
-
-          </div>
-
-          <div class= "col-md-6" id ='map'>
+          <div class= "col-md-12" id ='map'>
           </div>
         </div>
 

@@ -5,21 +5,15 @@
 var markers = [];
 var imageResource;
 var places = [
-  {title: 'Tea Factory', location: {lat: -20.426329, lng: 57.525659}},
-  {title: 'Nature Park', location: {lat: -20.499704, lng: 57.562998}},
+  {title: "Murr's Volcano", location: {lat: -20.315, lng: 57.505}},
+  {title: 'Port Louis', location: {lat: -20.166667, lng: 57.516667}},
   {title: 'Casela World of Adventures', location: {lat: -20.290841, lng: 57.404287}},
-  {title: 'Aux Cerf Island', location: {lat: -20.272354, lng: 57.804111}},
+  {title: 'Curepipe', location: {lat: -20.318775, lng: 57.526294}},
   {title: 'Seven Coloured Earth', location: {lat: -20.440271, lng: 57.373708}},
-  {title: 'Chamarel Waterfall', location: {lat: -20.443222, lng: 57.385779}},
-  {title: 'Blue Bay Marine Park Bodies', location: {lat: -20.444848, lng: 57.709801}}
+  {title: 'Chamarel', location: {lat: -20.443222, lng: 57.385779}},
+
 ];
 
-
-ko.applyBindings(viewModel);
-
-var viewModel ={
-  
-}
 
       function initMap(){
       var map = new google.maps.Map(document.getElementById('map'), {
@@ -32,7 +26,7 @@ var viewModel ={
       var largeInfowindow = new google.maps.InfoWindow();
       var bounds = new google.maps.LatLngBounds();
 
-//
+      //
       for (var i = 0; i < places.length; i++){
         var position = places[i].location;
         var title = places[i].title;
@@ -54,54 +48,44 @@ var viewModel ={
         bounds.extend(markers[i].position);
       }
         map.fitBounds(bounds);
+        ko.applyBindings(new ViewModel());
       }//end initMap()
 
 
-    function populateInfoWindow(marker, infowindow) {
-      // Check to make sure the infowindow is not already opened on this marker.
-      if (infowindow.marker != marker) {
-        infowindow.marker = marker;
-        infowindow.setContent('<div>' + marker.title + '</div>');
-        infowindow.width
-        infowindow.open(map, marker);
-        infowindow.marker.setAnimation(google.maps.Animation.BOUNCE);
+
+      function populateInfoWindow(marker, infowindow) {
+
+        var wikiURL = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + marker.title + '&format=json&callback=wikiCallback';
+            var timeout = setTimeout(function () {
+      alert("failed to load wikipedia page");
+    }, 4000);
+      $.ajax({
+                          url: wikiURL,
+                          dataType: "jsonp",
+                          success: function (response) {
+                           var articleList = response[3];
+                           var about = response[2][0];
+                           var articleName = response[0];
+                           console.log(response);
+
+        if (infowindow.marker != marker)
+        {
+          infowindow.marker = marker;
+          infowindow.open(map, marker);
+          infowindow.addListener('closeclick', function(){
+              infowindow.setMarker(null);
+            });
+            infowindow.setContent('<div>' + marker.title + '</br>' + about +
+             ' check Wiki Page: <a class="text-danger" href ="' + articleList + '">' +
+              articleName + ' </div>');
+
+              // marker animation
+
+              infowindow.marker.setAnimation(google.maps.Animation.BOUNCE);
         setTimeout(function(){ marker.setAnimation(null); }, 750);
 
-        // Make sure the marker property is cleared if the infowindow is closed.
-        infowindow.addListener('closeclick',function(){
-          infowindow.setMarker = null;
-
+             clearTimeout(timeout);
+          }
+        }
         });
-      }
-    }
-
-  var accessToken= "390243344.ea87cab.bf439d7abd714d4492b429e38b17ef71";
-  var instaUrl = "https://api.instagram.com/v1/media/search?lat="+48.858844+"&lng="+2.294351+"&access_token="+accessToken+
-  "&count=1";
-
-
-  // function getInstagramImages(){
-  //
-  //   for (var i = 0; i < 7; i++){
-  //
-  //
-  //   }
-  //
-  //
-  //
-  //
-  //
-  // }
-
-
-  $.ajax({
-
-    'url': instaUrl,
-    'type': "GET",
-    'dataType': "jsonp",
-    success: function(response){
-      console.log(response);
-
-    }
-
-  });//end ajax
+      }// end populate
