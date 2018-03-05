@@ -116,7 +116,7 @@ function populateInfoWindow(marker,
                     });
                 infowindow.setContent('<div>' +
                     marker.title + '</br>' + about +
-                    ' check Wiki Page: <a class="text-danger" href ="' +
+                    ' Wiki Page: <a class="text-danger" href ="' +
                     articleList + '">' +
                     articleName + ' </div>');
 
