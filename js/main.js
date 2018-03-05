@@ -2,10 +2,10 @@
 var markers = [];
 var imageResource, position;
 var places = [{
-        title: "Murr's Volcano",
+        title: "Black River Gorges National Park",
         location: {
-            lat: -20.315,
-            lng: 57.505
+            lat: -20.416667,
+            lng: 57.416667
         }
     },
     {
@@ -16,10 +16,10 @@ var places = [{
         }
     },
     {
-        title: 'Casela World of Adventures',
+        title: 'Blue Penny Museum',
         location: {
-            lat: -20.290841,
-            lng: 57.404287
+            lat: -20.1609,
+            lng: 57.4975
         }
     },
     {
@@ -53,7 +53,7 @@ function initMap() {
                 lat: -20.318775,
                 lng: 57.526294
             },
-            zoom: 14
+            zoom: 16
         });
 
     var largeInfowindow = new google.maps.InfoWindow();
