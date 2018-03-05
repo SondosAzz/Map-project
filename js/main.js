@@ -108,7 +108,7 @@ var places = [
          },this);
 
 
-         self.selectPlace = function(place) {
+         self.showMarker = function(place) {
              google.maps.event.trigger(place.marker, 'click');
            };
       }
