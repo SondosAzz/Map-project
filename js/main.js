@@ -92,8 +92,6 @@ var places = [
       }// end populate
 
       //View Model +knockout
-
-
        function ViewModel(){
         var self =this;
         this.filter = ko.observable();
@@ -102,8 +100,13 @@ var places = [
 
         this.visiblePlaces = ko.computed(function(){
              return this.places().filter(function(place){
-                 if(!self.filter() || place.title.toLowerCase().indexOf(self.filter().toLowerCase()) !== -1)
+                 if(!self.filter() || place.title.toLowerCase().indexOf(self.filter().toLowerCase()) !== -1){
+                   place.marker.setVisible(true);
                    return place;
+                 }else {
+                   place.marker.setVisible(false);
+                 }
+
              });
          },this);
 
