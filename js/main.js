@@ -42,6 +42,7 @@ var places = [
         });
 
         markers.push(marker);
+        places[i].marker = marker; // 1
         marker.addListener('click', function() {
           populateInfoWindow(this, largeInfowindow);
         });
@@ -90,9 +91,9 @@ var places = [
         });
       }// end populate
 
-      //View Model
+      //View Model +knockout
 
-      // using knockout to make a live search
+
        function ViewModel(){
         var self =this;
         this.filter = ko.observable();
@@ -103,7 +104,6 @@ var places = [
              return this.places().filter(function(place){
                  if(!self.filter() || place.title.toLowerCase().indexOf(self.filter().toLowerCase()) !== -1)
                    return place;
-
              });
          },this);
 
