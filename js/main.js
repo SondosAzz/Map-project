@@ -65,7 +65,7 @@ function initMap() {
     function callback() {
       return function() {
         populateInfoWindow(this,largeInfowindow);
-      }
+      };
     }
     for (var i = 0; i < places.length; i++) {
         position = places[i].location;
