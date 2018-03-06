@@ -46,7 +46,10 @@ var places = [{
 
 ];
 
+
+
 function initMap() {
+
     var map = new google.maps.Map(document
         .getElementById('map'), {
             center: {
@@ -59,13 +62,16 @@ function initMap() {
     var largeInfowindow = new google.maps.InfoWindow();
     var bounds = new google.maps.LatLngBounds();
 
-    //
+    function callback() {
+      return function() {
+        populateInfoWindow(this,largeInfowindow);
+      }
+    }
     for (var i = 0; i < places.length; i++) {
         position = places[i].location;
         var title = places[i].title;
 
         // create markers
-
         var marker = new google.maps.Marker({
             map: map,
             position: position,
@@ -76,10 +82,7 @@ function initMap() {
 
         markers.push(marker);
         places[i].marker = marker; // 1
-        marker.addListener('click', function() {
-            populateInfoWindow(this,
-                largeInfowindow);
-        });
+        marker.addListener('click',callback());
         bounds.extend(markers[i].position);
     }
     map.fitBounds(bounds);
